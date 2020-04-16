@@ -33,9 +33,6 @@ jobs:
 
   integration-test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: app
     strategy:
       matrix:
         node-version: [13.x]
@@ -48,6 +45,7 @@ jobs:
           build: yarn
           start: yarn start
           wait-on: http://localhost:3000
+          working-directory: app
 
   build:
     runs-on: ubuntu-latest
