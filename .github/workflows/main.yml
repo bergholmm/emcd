@@ -25,7 +25,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install yarn
       run: npm install -g yarn
-    - run: cd app/
+    - run: cd app
     - run: yarn
     - run: yarn test
 
@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: cd app/
+      - run: cd app
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
