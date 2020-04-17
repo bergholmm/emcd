@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 import logo from 'assets/logo.svg'
-import { fetchLatestComic } from 'api'
+import { fetchLatestComic, Comic } from 'api'
 
 const App = () => {
-  const [status, setStatus] = useState('')
+  const [latestComic, setLatestComic] = useState(undefined as Comic | undefined)
 
   useEffect(() => {
-    fetchLatestComic().then(status => setStatus(status.message))
+    fetchLatestComic().then(comic => setLatestComic(comic))
   }, [])
 
   return (
@@ -15,7 +15,7 @@ const App = () => {
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <p>EMCD</p>
-        <p>{status}</p>
+        {latestComic && <img src={latestComic.img} />}
       </header>
     </div>
   )
