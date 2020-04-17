@@ -15,7 +15,7 @@ const App = () => {
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <p>EMCD</p>
-        {latestComic && <img src={latestComic.img} />}
+        {latestComic && <img src={latestComic.img} alt='comic' />}
       </header>
     </div>
   )
