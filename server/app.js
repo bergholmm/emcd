@@ -36,8 +36,8 @@ const createApp = async () => {
     res.sendFile(path.resolve(__dirname, '../app/build', 'index.html'))
   })
 
-  app.listen(5000, function() {
-    logger.info(`Node server listening on port 5000`)
+  app.listen(process.env.PORT || 5000, function() {
+    logger.info(`Node server listening on port ${process.env.PORT || 5000}`)
   })
 
   return { logger, shutdown }
