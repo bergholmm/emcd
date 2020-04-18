@@ -3,11 +3,12 @@ import path from 'path'
 import bodyParser from 'body-parser'
 
 import createRoutes from './routes'
+import { createLoggerMiddleware } from './middleware'
 
 const createResources = () => {
   const logger = {
-    info: message => console.info(message),
-    error: message => console.error(message),
+    info: (message, ...rest) => console.info(message, ...rest),
+    error: (message, ...rest) => console.error(message, ...rest),
   }
 
   const shutdown = signal => {
@@ -25,12 +26,14 @@ const createApp = async () => {
   const app = express()
   const router = express.Router()
   const { logger, shutdown } = createResources()
+  const loggerMiddleware = createLoggerMiddleware(logger)
 
   app.use(bodyParser.json())
+  app.use(loggerMiddleware)
   app.use(express.static(path.resolve(__dirname, '../app/build')))
   app.use('/api', router)
 
-  createRoutes(router)
+  createRoutes({ router, logger })
 
   app.get('*', (_, res) => {
     res.sendFile(path.resolve(__dirname, '../app/build', 'index.html'))

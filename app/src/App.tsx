@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react'
 
 import logo from 'assets/logo.svg'
-import { fetchLatestComic, Comic } from 'api'
+import { fetchComics, Comic } from 'api'
 
 const App = () => {
-  const [latestComic, setLatestComic] = useState(undefined as Comic | undefined)
+  const [comics, setComics] = useState([] as Comic[])
 
   useEffect(() => {
-    fetchLatestComic().then(comic => setLatestComic(comic))
+    const updateComics = async () => {
+      const comics = await fetchComics()
+      setComics(comics)
+    }
+    updateComics()
   }, [])
 
   return (
@@ -15,7 +19,8 @@ const App = () => {
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <p>EMCD</p>
-        {latestComic && <img src={latestComic.img} alt='comic' />}
+        {comics.length &&
+          comics.map(comic => <img src={comic.img} alt='comic' />)}
       </header>
     </div>
   )
