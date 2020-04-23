@@ -5,6 +5,7 @@ import {
   GridListTile,
   GridListTileBar,
   CircularProgress,
+  withWidth,
 } from '@material-ui/core'
 
 import { fetchComics, Comic } from 'api'
@@ -24,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
     tile: {
       backgroundColor: '#fafafa',
     },
+    titleBar: {
+      backgroundColor: theme.palette.primary.main,
+    },
     title: {
       color: theme.palette.primary.contrastText,
     },
@@ -38,8 +42,20 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const Explore = () => {
+const getNumCols = (width: string): number => {
+  switch (width) {
+    case 'xs':
+      return 1
+    case 'sm':
+      return 2
+    default:
+      return 3
+  }
+}
+
+const Explore: React.FunctionComponent<{ width: string }> = ({ width }) => {
   const classes = useStyles()
+
   const [comics, setComics] = useState([] as Comic[])
   const [nextComic, setNextComic] = useState(null as number | null)
   const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreComics)
@@ -63,10 +79,12 @@ const Explore = () => {
     updateComics()
   }, [])
 
+  const numCols = getNumCols(width)
+
   return (
     <div className={classes.root}>
       <ComicView open={isOpen} comic={comic} onClose={() => setIsOpen(false)} />
-      <GridList cellHeight={260} cols={4} spacing={28}>
+      <GridList cellHeight={285} cols={numCols} spacing={28}>
         {comics.map(comic => (
           <GridListTile
             className={classes.tile}
@@ -81,6 +99,7 @@ const Explore = () => {
               title={comic.title}
               titlePosition='top'
               classes={{
+                root: classes.titleBar,
                 title: classes.title,
               }}
             />
@@ -96,4 +115,4 @@ const Explore = () => {
   )
 }
 
-export default Explore
+export default withWidth()(Explore)
