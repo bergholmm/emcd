@@ -32,8 +32,8 @@ export const fetchComics = async (
 ): Promise<ComicResponse> => {
   try {
     let response
-    if (number) response = await fetch(`/api/comics?number=${number}&limit=21`)
-    else response = await fetch(`/api/comics?limit=21`)
+    if (number) response = await fetch(`/api/comics?number=${number}&limit=24`)
+    else response = await fetch(`/api/comics?limit=24`)
     return await response.json()
   } catch (error) {
     console.error(error)
