@@ -11,7 +11,7 @@ import {
   IconButton,
 } from '@material-ui/core'
 
-import { Comic } from 'api/index'
+import { Comic } from 'types'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,14 +42,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {
   open: boolean
+  comic: Comic
+  next: () => void
+  prev: () => void
   onClose: () => void
-  comic: Comic | null
 }
 
-const ComicView: React.FunctionComponent<Props> = ({
+const Dialog: React.FunctionComponent<Props> = ({
   open,
   onClose,
   comic,
+  next,
+  prev,
 }) => {
   const classes = useStyles()
   return (
@@ -63,7 +67,7 @@ const ComicView: React.FunctionComponent<Props> = ({
       <Fade in={open}>
         <div className={classes.container}>
           <div className={classes.navigation}>
-            <IconButton>
+            <IconButton onClick={prev}>
               <ArrowBackIos color='secondary' />
             </IconButton>
           </div>
@@ -81,7 +85,7 @@ const ComicView: React.FunctionComponent<Props> = ({
             </div>
           </Card>
           <div className={classes.navigation}>
-            <IconButton>
+            <IconButton onClick={next}>
               <ArrowForwardIos color='secondary' />
             </IconButton>
           </div>
@@ -91,4 +95,4 @@ const ComicView: React.FunctionComponent<Props> = ({
   )
 }
 
-export default ComicView
+export default Dialog

@@ -1,13 +1,17 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 
 import Layout from 'components/Layout'
-import Explore from 'views/Explore'
+import Explore from 'features/Explore'
+import store from 'store'
 
 const App = () => {
   return (
-    <Layout>
-      <Explore />
-    </Layout>
+    <Provider store={store()}>
+      <Layout>
+        <Explore />
+      </Layout>
+    </Provider>
   )
 }
 
