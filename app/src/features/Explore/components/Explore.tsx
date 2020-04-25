@@ -72,7 +72,6 @@ const Explore: React.FunctionComponent<Props> = ({
     setDisplayError(error)
   }, [error])
 
-  console.log(isFetching)
   return (
     <div className={classes.root}>
       <Dialog />
