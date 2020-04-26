@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node dist/index.js",
-    "build": "tsc && cd app/ && yarn && yarn build",
+    "build": "yarn && tsc && cd app/ && yarn && yarn build",
     "dev": "nodemon --exec ts-node server/index.ts --watch src",
     "test": "jest server --watch"
   },
