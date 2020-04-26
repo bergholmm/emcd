@@ -5,13 +5,8 @@ import {
   makeStyles,
   createStyles,
 } from '@material-ui/core/styles'
-import {
-  CssBaseline,
-  Container,
-  AppBar,
-  Typography,
-  Toolbar,
-} from '@material-ui/core'
+import { CssBaseline, Container, AppBar, Toolbar } from '@material-ui/core'
+import BlurOnIcon from '@material-ui/icons/BlurOn'
 
 const theme = createMuiTheme({
   palette: {
@@ -40,7 +35,7 @@ const Layout: React.FunctionComponent = ({ children }) => {
       <AppBar position='fixed'>
         <Container maxWidth='md'>
           <Toolbar className={classes.appBar}>
-            <Typography variant='h6'>EMCD</Typography>
+            <BlurOnIcon fontSize='large' />
           </Toolbar>
         </Container>
       </AppBar>
