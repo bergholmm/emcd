@@ -25,3 +25,4 @@ if (!isDev && cluster.isMaster) {
       .on('uncaughtException', shutdown('uncaughtException'))
   })
 }
+

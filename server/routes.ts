@@ -1,16 +1,18 @@
+import { Request, Response } from 'express'
 import { fetchComic, fetchComics } from './comics'
+import { Comic } from './types'
 
-const getNextNumber = comics => {
+const getNextNumber = (comics: Comic[]): number => {
   const comic = comics[comics.length - 1]
   return comic.num > 0 ? comic.num - 1 : 0
 }
 
 const createRoutes = ({ router, logger }) => {
-  router.get('/status', (_, res) => {
+  router.get('/status', (_: Request, res: Response) => {
     res.json({ message: 'ok' })
   })
 
-  router.get('/latestComic', async (req, res) => {
+  router.get('/latestComic', async (req: Request, res: Response) => {
     try {
       const comic = await fetchComic()
       res.json({ ...comic })
@@ -20,12 +22,12 @@ const createRoutes = ({ router, logger }) => {
     }
   })
 
-  router.get('/comics', async (req, res) => {
-    const number = req.query.number
-    const limit = req.query.limit
+  router.get('/comics', async (req: Request, res: Response) => {
+    const comicIssue = parseInt(req.query.comicIssue as string, 10)
+    const limit = parseInt(req.query.limit as string, 10)
 
     try {
-      const comics = await fetchComics(number, limit)
+      const comics = await fetchComics(comicIssue, limit)
       const next = getNextNumber(comics)
       res.json({ comics, next })
     } catch (error) {

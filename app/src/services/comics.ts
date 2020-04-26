@@ -12,11 +12,15 @@ export const fetchLatestComic = async (): Promise<Comic> => {
   }
 }
 
-export const fetchComics = async (number: number): Promise<ComicsResponse> => {
+export const fetchComics = async (
+  comicIssue: number
+): Promise<ComicsResponse> => {
   try {
     let response
-    if (number !== -1)
-      response = await fetch(`/api/comics?number=${number}&limit=${LIMIT}`)
+    if (comicIssue !== -1)
+      response = await fetch(
+        `/api/comics?comicIssue=${comicIssue}&limit=${LIMIT}`
+      )
     else response = await fetch(`/api/comics?limit=${LIMIT}`)
 
     if (!response.ok) throw new Error(response.statusText)

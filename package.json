@@ -7,18 +7,28 @@
     "url": "https://github.com/bergholmm/emcd.git"
   },
   "scripts": {
-    "start": "node server",
-    "build": "cd app/ && yarn && yarn build"
+    "start": "node dist/index.js",
+    "build": "tsc && cd app/ && yarn && yarn build",
+    "dev": "nodemon --exec ts-node server/index.ts --watch src",
+    "test": "jest server --watch"
   },
   "cacheDirectories": [
     "node_modules",
     "app/node_modules"
   ],
   "dependencies": {
+    "@types/express": "^4.17.6",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.2",
+    "@types/node-fetch": "^2.5.7",
     "body-parser": "^1.19.0",
-    "esm": "^3.2.25",
     "express": "^4.16.4",
-    "node-fetch": "^2.6.0"
+    "jest": "^25.4.0",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.3",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.9.1",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
@@ -27,4 +37,3 @@
     "prettier": "^1.19.1"
   }
 }
-
