@@ -7,17 +7,16 @@ const getNextNumber = (comics: Comic[]): number => {
   return comic.num > 0 ? comic.num - 1 : 0
 }
 
-const createRoutes = ({ router, logger }) => {
+const createRoutes = ({ router }) => {
   router.get('/status', (_: Request, res: Response) => {
     res.json({ message: 'ok' })
   })
 
-  router.get('/latestComic', async (req: Request, res: Response) => {
+  router.get('/latestComic', async (_: Request, res: Response) => {
     try {
       const comic = await fetchComic()
       res.json({ ...comic })
     } catch (error) {
-      logger.error(`[ERROR] ${req.method}:${req.url} 500`, error)
       res.status(500).send(error)
     }
   })
@@ -31,7 +30,6 @@ const createRoutes = ({ router, logger }) => {
       const next = getNextNumber(comics)
       res.json({ comics, next })
     } catch (error) {
-      logger.error(`[ERROR] ${req.method}:${req.url} 500`, error)
       res.status(500).send(error)
     }
   })
