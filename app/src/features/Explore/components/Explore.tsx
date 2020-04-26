@@ -1,40 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-import { CircularProgress, Snackbar, IconButton } from '@material-ui/core'
-import { Close } from '@material-ui/icons'
 
 import Dialog from '../containers/Dialog'
 import ComicList from '../containers/ComicList'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
-      marginTop: '10px',
-    },
-    tile: {
-      backgroundColor: '#fafafa',
-    },
-    titleBar: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    title: {
-      color: theme.palette.primary.contrastText,
-    },
-    loader: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#fafafa',
-      height: '100px',
-      width: '100%',
-    },
-  })
-)
+import ErrorMessage from 'components/ErrorMessage'
+import Loader from 'components/Loader'
 
 interface Props {
   isFetching: boolean
@@ -48,7 +18,6 @@ const Explore: React.FunctionComponent<Props> = ({
   fetchComics,
 }) => {
   const classes = useStyles()
-  const [displayError, setDisplayError] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,36 +37,27 @@ const Explore: React.FunctionComponent<Props> = ({
     // eslint-disable-next-line
   }, [])
 
-  useEffect(() => {
-    setDisplayError(error)
-  }, [error])
-
   return (
     <div className={classes.root}>
       <Dialog />
       <ComicList />
-      {isFetching && (
-        <div className={classes.loader}>
-          <CircularProgress />
-        </div>
-      )}
-      <Snackbar
-        classes={{ root: classes.titleBar }}
-        open={displayError}
-        autoHideDuration={6000}
-        message='Ops, something went wrong!'
-        action={
-          <IconButton
-            size='small'
-            aria-label='close'
-            color='inherit'
-            onClick={() => setDisplayError(!displayError)}>
-            <Close fontSize='small' />
-          </IconButton>
-        }
-      />
+      <Loader isLoading={isFetching} />
+      <ErrorMessage error={error} />
     </div>
   )
 }
 
 export default Explore
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+      backgroundColor: theme.palette.background.paper,
+      marginTop: '10px',
+    },
+  })
+)

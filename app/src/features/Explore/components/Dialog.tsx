@@ -13,33 +13,6 @@ import {
 
 import { Comic } from 'types'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    container: {
-      outline: '0',
-      display: 'flex',
-      alignItems: 'center',
-    },
-    media: {
-      maxWidth: '100%',
-      maxHeight: '620px',
-    },
-    navigation: {
-      [theme.breakpoints.down('xs')]: {
-        display: 'none',
-      },
-      [theme.breakpoints.up('sm')]: {
-        display: 'flex',
-      },
-    },
-  })
-)
-
 interface Props {
   open: boolean
   comic: Comic
@@ -56,6 +29,7 @@ const Dialog: React.FunctionComponent<Props> = ({
   prev,
 }) => {
   const classes = useStyles()
+
   return (
     <Modal
       className={classes.modal}
@@ -96,3 +70,30 @@ const Dialog: React.FunctionComponent<Props> = ({
 }
 
 export default Dialog
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    container: {
+      outline: '0',
+      display: 'flex',
+      alignItems: 'center',
+    },
+    media: {
+      maxWidth: '100%',
+      maxHeight: '620px',
+    },
+    navigation: {
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
+      [theme.breakpoints.up('sm')]: {
+        display: 'flex',
+      },
+    },
+  })
+)

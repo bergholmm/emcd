@@ -9,47 +9,6 @@ import {
 
 import { Comic } from 'types'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper,
-      marginTop: '10px',
-    },
-    tile: {
-      backgroundColor: '#fafafa',
-    },
-    titleBar: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    title: {
-      color: theme.palette.primary.contrastText,
-    },
-    loader: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#fafafa',
-      height: '100px',
-      width: '100%',
-    },
-  })
-)
-
-const getNumCols = (width: string): number => {
-  switch (width) {
-    case 'xs':
-      return 1
-    case 'sm':
-      return 2
-    default:
-      return 3
-  }
-}
-
 interface Props {
   width: string
   comics: Comic[]
@@ -84,3 +43,28 @@ const ComicList: React.FunctionComponent<Props> = ({
 }
 
 export default withWidth()(ComicList)
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    tile: {
+      backgroundColor: '#fafafa',
+    },
+    titleBar: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    title: {
+      color: theme.palette.primary.contrastText,
+    },
+  })
+)
+
+const getNumCols = (width: string): number => {
+  switch (width) {
+    case 'xs':
+      return 1
+    case 'sm':
+      return 2
+    default:
+      return 3
+  }
+}
