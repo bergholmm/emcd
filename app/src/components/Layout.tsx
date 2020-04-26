@@ -20,7 +20,7 @@ const Layout: React.FunctionComponent = ({ children }) => (
     <AppBar position='fixed'>
       <Container maxWidth='md'>
         <Toolbar>
-          <BlurOnIcon fontSize='large' />
+          <BlurOnIcon id='logo' fontSize='large' />
         </Toolbar>
       </Container>
     </AppBar>
