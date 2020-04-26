@@ -45,13 +45,15 @@ export const prevComic = (): Action => ({
 
 export const fetchComicsAction = (): AsyncAction => {
   return async (dispatch, getState) => {
-    dispatch(getComics())
-    const { next } = getState().explore
+    const { next, isFetching } = getState().explore
+    if (isFetching) return
+
     try {
+      dispatch(getComics())
       const res = await fetchComics(next)
       dispatch(getComicsSuccess(res))
     } catch (error) {
-      dispatch(getComicsFailure(JSON.stringify(error)))
+      dispatch(getComicsFailure(error))
     }
   }
 }

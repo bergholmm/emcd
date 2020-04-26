@@ -28,7 +28,7 @@ const ComicList: React.FunctionComponent<Props> = ({
       {comics.map((comic, index) => (
         <GridListTile
           className={classes.tile}
-          key={comic.img}
+          key={index}
           onClick={() => onClick(index)}>
           <img src={comic.img} alt={comic.title} />
           <GridListTileBar

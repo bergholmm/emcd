@@ -9,7 +9,7 @@ export const fetchComic = async number => {
     if (number) response = await fetch(`${HOST}${number}/${PATH}`)
     else response = await fetch(`${HOST}/${PATH}`)
 
-    if (response.statusText !== 'OK') throw new Error(response.statusText)
+    if (!response.ok) throw new Error(response.statusText)
 
     return response.json()
   } catch (error) {
