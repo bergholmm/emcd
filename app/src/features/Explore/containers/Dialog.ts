@@ -1,8 +1,6 @@
 import { connect } from 'react-redux'
-
 import Dialog from 'features/Explore/components/Dialog'
-import { AsyncDispatch } from 'types'
-import { RootState } from 'store'
+import { AsyncDispatch, RootState } from 'types'
 import {
   getComic,
   toggleDialog,

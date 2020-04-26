@@ -1,8 +1,7 @@
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { ThunkDispatch } from 'redux-thunk'
-
-import { RootState } from 'store'
+import { Comic } from 'types'
 
 export type Action = AnyAction
 
@@ -14,3 +13,16 @@ export type AsyncAction<ReturnType = void> = ThunkAction<
 >
 
 export type AsyncDispatch = ThunkDispatch<RootState, unknown, Action>
+
+export interface ExploreState {
+  comics: Comic[]
+  next: number
+  currentComic: number
+  isDialogOpen: boolean
+  isFetching: boolean
+  errorMessage: string
+}
+
+export interface RootState {
+  explore: ExploreState
+}

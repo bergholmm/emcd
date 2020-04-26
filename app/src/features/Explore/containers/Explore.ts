@@ -1,8 +1,6 @@
 import { connect } from 'react-redux'
-
 import Explore from 'features/Explore/components/Explore'
-import { AsyncDispatch } from 'types'
-import { RootState } from 'store'
+import { AsyncDispatch, RootState } from 'types'
 import { fetchComicsAction } from 'features/Explore/store'
 
 const mapStateToProps = ({ explore }: RootState) => ({

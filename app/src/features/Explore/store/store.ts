@@ -1,4 +1,4 @@
-import { Action, Comic } from 'types'
+import { Action, ExploreState } from 'types'
 import {
   GET_COMICS,
   GET_COMICS_SUCCESS,
@@ -9,16 +9,7 @@ import {
   PREV_COMIC,
 } from './actions'
 
-export interface State {
-  comics: Comic[]
-  next: number
-  currentComic: number
-  isDialogOpen: boolean
-  isFetching: boolean
-  errorMessage: string
-}
-
-const initialState: State = {
+const initialState: ExploreState = {
   comics: [],
   next: -1,
   currentComic: -1,
@@ -58,4 +49,5 @@ export const reducer = (state = initialState, action: Action) => {
   }
 }
 
-export const getComic = (state: State, index: number) => state.comics[index]
+export const getComic = (state: ExploreState, index: number) =>
+  state.comics[index]

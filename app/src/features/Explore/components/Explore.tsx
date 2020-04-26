@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles'
-
 import Dialog from '../containers/Dialog'
 import ComicList from '../containers/ComicList'
 import ErrorMessage from 'components/ErrorMessage'

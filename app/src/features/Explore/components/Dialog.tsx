@@ -10,7 +10,6 @@ import {
   Typography,
   IconButton,
 } from '@material-ui/core'
-
 import { Comic } from 'types'
 
 interface Props {

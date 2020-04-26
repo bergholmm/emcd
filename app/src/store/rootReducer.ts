@@ -1,13 +1,7 @@
 import { combineReducers } from 'redux'
-import {
-  reducer as exploreReducer,
-  State as ExploreState,
-} from 'features/Explore/store'
+import { RootState } from 'types'
+import { reducer as exploreReducer } from 'features/Explore/store'
 
-export interface RootState {
-  explore: ExploreState
-}
-
-export default combineReducers({
+export default combineReducers<RootState>({
   explore: exploreReducer,
 })

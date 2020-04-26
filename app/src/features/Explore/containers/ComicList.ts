@@ -1,8 +1,6 @@
 import { connect } from 'react-redux'
-
 import ComicList from 'features/Explore/components/ComicList'
-import { AsyncDispatch } from 'types'
-import { RootState } from 'store'
+import { AsyncDispatch, RootState } from 'types'
 import { toggleDialog, setCurrentComic } from 'features/Explore/store'
 
 const mapStateToProps = ({ explore }: RootState) => ({
