@@ -20,13 +20,7 @@ const Explore: React.FunctionComponent<Props> = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop !==
-          document.documentElement.offsetHeight ||
-        isFetching
-      )
-        return
-      else fetchComics()
+      if (shouldFetchMore(isFetching)) fetchComics()
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -60,3 +54,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
+
+const shouldFetchMore = (isFetching: boolean) =>
+  !(
+    isFetching ||
+    window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+  )
