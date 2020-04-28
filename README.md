@@ -19,7 +19,7 @@ There are two npm projects, one serving as a backend server `/server` and one as
 
 ### Requirement
 ```shell
-yarn: v1.22.4+
+npm or yarn
 node: 13.13.0+
 ```
 
