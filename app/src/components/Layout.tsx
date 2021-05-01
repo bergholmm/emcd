@@ -14,7 +14,7 @@ const theme = createMuiTheme({
   },
 })
 
-const Layout: React.FunctionComponent = ({ children }) => (
+const Layout: React.FC<{ children: React.ReactElement }> = ({ children }) => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <AppBar position='fixed'>
