@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     tile: {
       backgroundColor: '#fafafa',
+      '&:hover': {
+        opacity: 0.5,
+      },
     },
     titleBar: {
       backgroundColor: theme.palette.primary.main,

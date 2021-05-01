@@ -1,14 +1,22 @@
 import React from 'react'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons'
 import {
-  Modal,
+  ArrowBackIos,
+  ArrowForwardIos,
+  Close,
+  Launch,
+} from '@material-ui/icons'
+import {
   Backdrop,
-  Fade,
+  Box,
   Card,
   CardContent,
-  Typography,
+  CardHeader,
+  Fade,
   IconButton,
+  Link,
+  Modal,
+  Typography,
 } from '@material-ui/core'
 import { Comic } from 'types'
 
@@ -44,18 +52,34 @@ const Dialog: React.FunctionComponent<Props> = ({
               <ArrowBackIos color='secondary' />
             </IconButton>
           </div>
-          <Card>
-            <img className={classes.media} src={comic?.img} alt='ComicImage' />
-            <div>
-              <CardContent>
+          <Card className={classes.card}>
+            <CardHeader
+              title={
                 <Typography component='h5' variant='h5'>
                   {comic?.title}
                 </Typography>
-                <Typography variant='subtitle1' color='textSecondary'>
-                  {comic?.num}
-                </Typography>
-              </CardContent>
-            </div>
+              }
+              action={
+                <IconButton onClick={onClose}>
+                  <Close color='primary' />
+                </IconButton>
+              }
+            />
+            <Box display='flex' justifyContent='center'>
+              <img
+                className={classes.media}
+                src={comic?.img}
+                alt='ComicImage'
+              />
+            </Box>
+            <CardContent className={classes.content}>
+              <Typography>{comic?.alt}</Typography>
+              <Typography variant='subtitle1'>
+                <Link href={comic?.img} target='_blank' rel='noopener'>
+                  Source link <Launch style={{ fontSize: 14 }} />
+                </Link>
+              </Typography>
+            </CardContent>
           </Card>
           <div className={classes.navigation}>
             <IconButton onClick={next}>
@@ -78,13 +102,28 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
     },
     container: {
-      outline: '0',
       display: 'flex',
+      flex: 1,
+      outline: '0',
       alignItems: 'center',
+      justifyContent: 'space-between',
+      [theme.breakpoints.down('xs')]: {
+        height: '100%',
+      },
+    },
+    card: {
+      [theme.breakpoints.down('xs')]: {
+        width: '100%',
+        height: '100%',
+        overflow: 'scroll',
+      },
     },
     media: {
       maxWidth: '100%',
-      maxHeight: '620px',
+      maxHeight: '720px',
+    },
+    content: {
+      maxWidth: '350px',
     },
     navigation: {
       [theme.breakpoints.down('xs')]: {
